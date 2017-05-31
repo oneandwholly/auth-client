@@ -5,6 +5,7 @@ class Signin extends Component {
   handleFormSubmit({ email, password }) {
     console.log(email,password);
     // need to do something to log user in
+
   }
 
   render() {
