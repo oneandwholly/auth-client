@@ -36,7 +36,6 @@ class Signup extends Component {
 
     render() {
         const { handleSubmit, pristine, submitting } = this.props;
-        console.log('errorMessage:',this.props.errorMessage)
         return (
             <form onSubmit={ handleSubmit(this.handleFormSubmit.bind(this)) }>
                 <fieldset className="form-group">
