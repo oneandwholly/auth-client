@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 class Header extends Component {
   renderLinks() {
-    console.log(this.props.authenticated);
     if ( this.props.authenticated ) {
       return <li className="nav-item">
             <Link className="nav-link" to="/signout">Sing out</Link>
