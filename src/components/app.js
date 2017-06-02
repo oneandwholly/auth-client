@@ -5,6 +5,7 @@ import Signin from './auth/signin';
 import Signout from './auth/signout';
 import Signup from './auth/signup';
 import Feature from './feature';
+import Welcome from './welcome';
 import RequireAuth from './auth/require_auth';
 
 export default class App extends Component {
@@ -12,6 +13,7 @@ export default class App extends Component {
     return (
       <div>
         <Header />
+        <Route exact path="/" component={Welcome} />
         <Route path="/signin" component={Signin} />
         <Route path="/signout" component={Signout} />
         <Route path="/signup" component={Signup} />

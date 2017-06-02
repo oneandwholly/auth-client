@@ -8,11 +8,19 @@ import reduxThunk from 'redux-thunk';
 import App from './components/app';
 import reducers from './reducers';
 import history from './history';
+import { AUTH_USER } from './actions/types';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
+const store = createStoreWithMiddleware(reducers);
+
+const token = localStorage.getItem('token');
+
+if (token) {
+    store.dispatch({ type: AUTH_USER });
+}
 
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
+  <Provider store={store}>
         <Router history={history}>
             <App />
         </Router>
