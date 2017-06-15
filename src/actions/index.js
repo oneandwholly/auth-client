@@ -4,10 +4,18 @@ import {
     AUTH_USER,
     UNAUTH_USER,
     AUTH_ERROR,
-    FETCH_MESSAGE
+    FETCH_MESSAGE,
+    ADD_PICTURE
 } from './types';
 
 const ROOT_URL = "http://localhost:3090";
+
+export function addPicture({ picture }) {
+  return {
+    type: ADD_PICTURE,
+    payload: picture
+  };
+}
 
 export function signinUser({ email, password }) {
   return function(dispatch) {
@@ -21,7 +29,7 @@ export function signinUser({ email, password }) {
               // - Save the JWT token
               localStorage.setItem('token', response.data.token);
               // - redirect to the route /feature
-              history.push('/feature');
+              history.push('/home');
           })
           .catch(() => {
               // If request is bad..
@@ -41,7 +49,7 @@ export function signupUser({ email, password }) {
                 // - Save the JWT token
                 localStorage.setItem('token', response.data.token);
                 // - redirect to the route /feature
-                history.push('/feature');
+                history.push('/home');
             })
             .catch(error => {
                 const response = error.response;

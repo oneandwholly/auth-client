@@ -37,6 +37,8 @@
     "react-router-dom": "^4.1.1",
     "redux": "^3.0.4",
     "redux-form": "^6.7.0",
+    "redux-form-dropzone": "0.0.1",
     "redux-thunk": "^2.2.0"
-  }
+  },
+  "proxy": "http://localhost:3090"
 }
