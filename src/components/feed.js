@@ -1,27 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import * as actions from '../actions';
 
 class Feed extends Component {
 
-  renderCard(url) {
-    console.log(url);
+  componentWillMount() {
+    this.props.fetchPhoto();
+  }
+
+  renderCard(photo) {
     return <div>
-      <img src={url} />
+      <img src={photo} />
     </div>;
   }
 
   render() {
-    console.log('pcitures',this.props.pictures)
     return (
       <div>
-        {this.props.pictures.map(this.renderCard)}
+        {}
       </div>
     );
   }
 }
 
-function mapStateToProps({ pictures }) {
-  return { pictures };
+function mapStateToProps({ photos }) {
+  return { photos };
 }
 
-export default connect(mapStateToProps)(Feed);
+export default connect(mapStateToProps, actions)(Feed);

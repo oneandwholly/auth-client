@@ -36,6 +36,7 @@
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "redux": "^3.0.4",
+    "redux-devtools-extension": "^2.13.2",
     "redux-form": "^6.7.0",
     "redux-form-dropzone": "0.0.1",
     "redux-thunk": "^2.2.0"
