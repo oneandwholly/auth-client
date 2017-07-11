@@ -8,7 +8,7 @@ export default (state = [], action) => {
     case ADD_PICTURE:
       return [ action.payload, ...state ];
     case FETCH_PHOTO:
-      return [ action.payload, ...state ];
+      return [ ...action.payload ];
   }
 
   return state;

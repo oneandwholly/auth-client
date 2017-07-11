@@ -21,7 +21,6 @@ export function signinUser({ email, password }) {
               // - Update the state to indicate user is authenticated
               dispatch({ type: AUTH_USER })
               // - Save the JWT token
-              console.log(response.data.token);
               localStorage.setItem('token', response.data.token);
               // - redirect to the route /feature
               history.push('/feature');
@@ -88,7 +87,7 @@ export function fetchPhoto() {
         .then((response) => {
               dispatch({
                   type: FETCH_PHOTO,
-                  payload: response.data.photos
+                  payload: response.data
               })
         });
   };
@@ -113,7 +112,7 @@ export function uploadPhoto(data) {
 
     const d = new Date();
     const bucket = 'instaclone-pictures';
-    const key = Date.now().toString() + '/' + file.name;
+    const key = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
     const algorithm = 'AWS4-HMAC-SHA256';
     const credential = [
         AWS_ACCESS_KEY_ID,
@@ -151,12 +150,21 @@ export function uploadPhoto(data) {
         return axios.post(s3Url, body);
       })
       .then((response) => {
-        console.log(s3Url+key);
-        dispatch({
-          type: FETCH_PHOTO
-        });
         history.push('/home');
       })
 
+  }
+}
+
+export function addComment({comment_text, photo_id}) {
+  return function(dispatch) {
+      const config = {
+        headers: { authorization: localStorage.getItem('token')}
+      };
+      const body = {
+        comment_text,
+        photo_id
+      };
+      axios.post('http://localhost:3090/comment/add', body, config)
   }
 }
