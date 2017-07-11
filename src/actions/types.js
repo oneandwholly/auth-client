@@ -4,3 +4,4 @@ export const AUTH_ERROR = 'auth_error';
 export const FETCH_MESSAGE = 'fetch_message';
 export const ADD_PICTURE = 'add_picture';
 export const FETCH_PHOTO = 'fetch_photo';
+export const FETCH_COMMENT = 'fetch_comment';

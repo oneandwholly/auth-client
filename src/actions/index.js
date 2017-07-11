@@ -6,7 +6,8 @@ import {
     AUTH_ERROR,
     FETCH_MESSAGE,
     ADD_PICTURE,
-    FETCH_PHOTO
+    FETCH_PHOTO,
+    FETCH_COMMENT,
 } from './types';
 
 const ROOT_URL = "http://localhost:3090";
@@ -156,6 +157,21 @@ export function uploadPhoto(data) {
   }
 }
 
+export function fetchCommentByPhotoId({photo_id}) {
+  return function(dispatch) {
+    axios.get(`${ROOT_URL}/comment/fetch/${photo_id}`, {
+        headers: { authorization: localStorage.getItem('token') }
+    })
+        .then((response) => {
+              dispatch({
+                  type: FETCH_COMMENT,
+                  payload: {data: response.data, photo_id}
+              })
+        });
+  };
+}
+
+
 export function addComment({comment_text, photo_id}) {
   return function(dispatch) {
       const config = {
@@ -166,5 +182,17 @@ export function addComment({comment_text, photo_id}) {
         photo_id
       };
       axios.post('http://localhost:3090/comment/add', body, config)
+      .then((response) => {
+        axios.get(`${ROOT_URL}/comment/fetch/${photo_id}`, {
+            headers: { authorization: localStorage.getItem('token') }
+        })
+            .then((response) => {
+              console.log(response);
+                  dispatch({
+                      type: FETCH_COMMENT,
+                      payload: {data: response.data, photo_id}
+                  })
+            });
+      })
   }
 }
